@@ -1,1 +1,9 @@
-spring.application.name=message-service
+
+spring :
+  application:
+    name: message-service
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/message-service
+server:
+  port: 8080
