@@ -6,8 +6,22 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 
 public interface IChatController {
+
     @MessageMapping("/chat.send")
     @SendTo("/topic/conversations")
-    // fallback, actual messaging uses SimpMessagingTemplate with conversation-specific topic
     Messages sendMessage(@Payload Messages message) ;
+
+    @MessageMapping("/chat.edit")
+    @SendTo("/topic/conversations")
+    Messages editMessage(@Payload Messages message) ;
+
+    @MessageMapping("/chat.recall")
+    @SendTo("/topic/conversations")
+    Messages recallMessage(@Payload Messages message) ;
+
+    @MessageMapping("/chat.react")
+    @SendTo("/topic/conversations")
+    Messages reactMessage(@Payload Messages message) ;
+
+
 }

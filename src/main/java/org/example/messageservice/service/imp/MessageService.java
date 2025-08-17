@@ -1,4 +1,4 @@
-package org.example.messageservice.service;
+package org.example.messageservice.service.imp;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -6,6 +6,7 @@ import org.example.messageservice.models.entity.Conversation;
 import org.example.messageservice.models.entity.Messages;
 import org.example.messageservice.models.repository.ConversationRepository;
 import org.example.messageservice.models.repository.MessageRepository;
+import org.example.messageservice.service.IMessageService;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Slf4j
 public class MessageService implements IMessageService {
+
     private final SimpMessagingTemplate template;
     private final MessageRepository messageRepository;
     private final ConversationRepository conversationRepository;

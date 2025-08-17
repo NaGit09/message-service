@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.messageservice.enums.CONVERSATION_STATUS;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -19,8 +20,14 @@ import java.util.UUID;
 public class Conversation {
     @Id
     private String id;
-    private List<UUID> participants; // user ids
+    // check if conversation is not groups
+    private List<UUID> participants;
+
     private boolean group;
+
+    private CONVERSATION_STATUS status;
+    // meta data
     private Instant createdAt;
-    private String lastMessageId;
+    // load last message
+    private Messages lastMessages;
 }

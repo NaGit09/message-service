@@ -3,10 +3,8 @@ package org.example.messageservice.controller.rest;
 import lombok.RequiredArgsConstructor;
 import org.example.messageservice.controller.api.IMessageController;
 import org.example.messageservice.models.dto.SendMessageRequest;
-import org.example.messageservice.models.entity.Conversation;
 import org.example.messageservice.models.entity.Messages;
-import org.example.messageservice.models.repository.ConversationRepository;
-import org.example.messageservice.service.MessageService;
+import org.example.messageservice.service.imp.MessageService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,20 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MessageController implements IMessageController {
     private final MessageService messageService;
-    private final ConversationRepository conversationRepository;
 
-    @Override
-    public ResponseEntity<Conversation> createConversation(Conversation conv) {
-        conv.setCreatedAt(Instant.now());
-        Conversation conversation = conversationRepository.save(conv);
-        return ResponseEntity.ok(conversation);
-    }
-
-    @Override
-    public ResponseEntity<List<Messages>> getMessages(String id) {
-        List<Messages> messages = messageService.getConversationMessages(id);
-        return ResponseEntity.ok(messages);
-    }
 
     @Override
     public ResponseEntity<Messages> send(SendMessageRequest req) {
